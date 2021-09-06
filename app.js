@@ -1,8 +1,25 @@
 var turnFlag = true;
 var endFlag = false;
+var modalDisplay = false;
 
 var tableData = document.getElementById('table');
 var rows = document.getElementsByClassName('row');
+
+var modal = document.getElementById('alert-modal');
+var span = document.getElementsByClassName("close")[0];
+var modalContent = document.getElementById("modal-text");
+
+span.onclick = function () {
+  modal.style.display = "none";
+  modalDisplay = false;
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+    modalDisplay = false;
+  }
+};
 
 var exCount = 0;
 var ohCount = 0;
@@ -40,11 +57,10 @@ var checkWin = (boardObj) => {
       ohCount++;
       endGame('O');
       restartGame();
+    } else if (Object.keys(boardObj).length === 9 && modalDisplay !== true) {
+      endGame('DRAW');
+      restartGame();
     }
-  }
-  if (Object.keys(boardObj).length === 9) {
-     endGame();
-     restartGame();
   }
 };
 
@@ -70,15 +86,21 @@ var stateTracker = () => {
 
 // signals end of round and winner if one
 var endGame = (winner) => {
-  if (winner) {
-    alert(`~ ${winner} WINS ~` + '\n' + `the score is ` + '\n' + ` X's: ${exCount} ` + '\n' + ` O's: ${ohCount}`);
+  turnFlag = true;
+  if (winner !== 'DRAW') {
+    modal.style.display = "block";
+    modalContent.innerHTML = (`~ ${winner} WINS ~` + '<br/><br/>' + `the score is ` + '<br/>' + ` X's: ${exCount} ` + '<br/>' + ` O's: ${ohCount}`);
+    modalDisplay = true;
   } else {
-    alert('Draw');
+    modal.style.display = "block";
+    modalContent.innerHTML = (`~ ${winner} ~` + '<br/><br/>' + `the score remains ` + '<br/>' + ` X's: ${exCount} ` + '<br/>' + ` O's: ${ohCount}`);
+    modelDisplay = true;
   }
 };
 
 // functionality for new game button, does not refresh browser
 restartGame = () => {
+  turnFlag = true;
   Array.from(document.getElementsByClassName('col')).forEach(cellText => {
     cellText.textContent = '';
   })
@@ -88,7 +110,6 @@ restartGame = () => {
       cell.classList.remove('O');
     }
   }
-  turnFlag = !turnFlag;
 };
 
 // creates X or O on click, checks if move ends game
@@ -97,22 +118,25 @@ var renderChoice = () => {
     var rowsEvent = rows[i].addEventListener('click', (e) => {
       var table = e.target;
       var tempRes, check;
-      var ex = document.createTextNode("X");
-      var oh = document.createTextNode("O");
       if (table.classList.contains("X") || table.classList.contains("O")) {
-        alert('You cannot make this move');
-      } else if (turnFlag) {
+        modalContent.innerHTML = "You cannot make this move";
+        modal.style.display = "block";
+        modalDisplay = true;
+      } else if (turnFlag === true) {
+        var ex = document.createTextNode("X");
         table.appendChild(ex);
         table.classList.add('X');
+        turnFlag = false;
         tempRes = stateTracker();
         check = checkWin(tempRes);
-        turnFlag = !turnFlag;
-      } else {
+
+      } else if (turnFlag === false) {
+        var oh = document.createTextNode("O");
         table.appendChild(oh);
         table.classList.add('O');
+        turnFlag = true;
         tempRes = stateTracker();
         check = checkWin(tempRes);
-        turnFlag = !turnFlag;
       }
     });
   }
