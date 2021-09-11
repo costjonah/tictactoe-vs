@@ -129,7 +129,6 @@ var bot = () => {
   }
 };
 
-
 /* -------------------- state tracker - win conditions - refresh game -------------------- */
 
 // checks if move in question was the winning move
@@ -148,16 +147,20 @@ var checkWin = (boardObj) => {
     var exFilter = exChoices.filter((moves) => combo.includes(moves));
     var ohFilter = ohChoices.filter((moves) => combo.includes(moves));
     if (exFilter.length === 3) {
-      exCount++;
       endGame("X");
-      restartGame();
+      setTimeout(() => {
+        restartGame();
+      }, 750);
     } else if (ohFilter.length === 3) {
-      ohCount++;
       endGame("O");
-      restartGame();
+      setTimeout(() => {
+        restartGame();
+      }, 750);
     } else if (Object.keys(boardObj).length === 9 && modalDisplay !== true) {
       endGame("DRAW");
-      restartGame();
+      setTimeout(() => {
+        restartGame();
+      }, 750);
     }
   }
 };
@@ -187,6 +190,12 @@ var stateTracker = () => {
 
 // signals end of round and winner if one
 var endGame = (winner) => {
+  if (winner === "X") {
+    exCount++;
+  }
+  if (winner === "O") {
+    ohCount++;
+  }
   endFlag = true;
   turnFlag = true;
   if (winner !== "DRAW") {
