@@ -19,7 +19,7 @@ Implemented single-player functionality by engineering a bot that if there are n
 · Ability to choose playing dual-player locally or against the bot
 
 ## Product Overview Demo · https://player.vimeo.com/video/617113944
-<img width="1376" alt="FECoverview" src="https://user-images.githubusercontent.com/72520699/135125958-c2f72cec-c398-415b-b9b0-9e7600754d47.png">
+<img width="1376" alt="TicTacToedemoPic" src="https://user-images.githubusercontent.com/72520699/135132180-266d3e8a-986f-4fcb-aa63-ecb01dfbecf9.png">
 
 ## Usage
 
