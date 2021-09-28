@@ -18,7 +18,7 @@ Implemented single-player functionality by engineering a bot that if there are n
 · Bot will not only block user's winning move but bot will take it's own winning move if one is available
 · Ability to choose playing dual-player locally or against the bot
 
-## Product Overview Demo · https://player.vimeo.com/video/617113944?h=4225b73032&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+## Product Overview Demo · https://player.vimeo.com/video/617113944
 <img width="1376" alt="FECoverview" src="https://user-images.githubusercontent.com/72520699/135125958-c2f72cec-c398-415b-b9b0-9e7600754d47.png">
 
 ## Usage
