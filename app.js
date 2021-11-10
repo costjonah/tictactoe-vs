@@ -245,8 +245,8 @@ const stateTracker = () => {
 const endGame = (winner) => {
   if (winner === "X") {
     exCount++;
-  }
-  if (winner === "O") {
+    ohCount--;
+  } else if (winner === "O") {
     ohCount++;
   }
   endFlag = true;
