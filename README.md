@@ -5,7 +5,7 @@ This was originally the first challenge in a sprint called Mini-Apps. Upon compl
 
 ## To check out this project either:
 
-Visit https://jcost-tictactoe.herokuapp.com/. <br />
+Visit https://jcost-tictactoe.herokuapp.com <br />
 OR <br />
 Start by forking and cloning the repo into your computer in the terminal:
 
